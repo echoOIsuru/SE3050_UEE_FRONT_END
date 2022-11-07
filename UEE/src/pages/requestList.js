@@ -20,41 +20,42 @@ export default function RequestList({ navigation }) {
         
 
     return (
-        <View style={{justifyContent: 'center',}}>
+        <View style={{justifyContent: 'center',backgroundColor:'white'}}>
 
             <View>
             <Text style={{ fontSize:30,fontWeight: '400',textAlign:'center',padding:25}}>Donation Request List</Text>
             </View>
 
-            <View style={{flexDirection:"row",paddingBottom:15}}>
+            <View style={{flexDirection:"row",paddingBottom:15,backgroundColor:'white'}}>
             <Image style={{width: 110, height:100,marginLeft:55 }}source={require('../assets/y1.png')}  />
             <Image style={{width: 210, height:87,}}source={require('../assets/y2.png')}  />
             </View>
           
-            <View style={{flexDirection:"row",paddingBottom:10}}>
-            <Text style={{ fontSize:20, fontWeight: '400',marginLeft:38}}>ID</Text>   
-            <Text style={{ fontSize:20, fontWeight: '400',marginLeft:55}}>Name</Text>
-            <Text style={{ fontSize:20, fontWeight: '400',marginLeft:55}}>Age</Text>
-            <Text style={{ fontSize:20, fontWeight: '400',marginLeft:55}}>Phone</Text>
+            <View style={{flexDirection:"row",paddingBottom:10,justifyContent:'center',alignItems:'center',backgroundColor:'#ECECEC'}}>
+            <Text style={{ fontSize:20, fontWeight: '400',width:100,marginLeft:10}}>ID</Text>   
+            <Text style={{ fontSize:20, fontWeight: '400',width:100}}>Name</Text>
+            <Text style={{ fontSize:20, fontWeight: '400',width:100}}>Age</Text>
+            <Text style={{ fontSize:20, fontWeight: '400',width:100}}>Phone</Text>
+           
             </View>
 
             {items.map(item => (
             
-                <View style={{flexDirection:"row",paddingBottom:20}} key={item._id}>
-                 <Text style={{ fontSize:20, fontWeight: '400',marginLeft:40}}>{item.request_id}</Text>   
-               <Text style={{ fontSize:20, fontWeight: '400',marginLeft:59}}>{item.name}</Text> 
-               <Text style={{ fontSize:20, fontWeight: '400',marginLeft:57 }}>{item.age}</Text>
-               <Text style={{ fontSize:20, fontWeight: '400',marginLeft:45 }}>{item.phone}</Text>      
+                <View style={{flexDirection:"row",paddingBottom:20,alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'#ECECEC'}} key={item._id}>
+                 <Text style={{ fontSize:15, fontWeight: '400',width:100,marginLeft:25}}>{item.request_id}</Text>   
+               <Text style={{ fontSize:15, fontWeight: '400',width:100,}}>{item.name}</Text> 
+               <Text style={{ fontSize:15, fontWeight: '400',width:100}}>{item.age}</Text>
+               <Text style={{ fontSize:15, fontWeight: '400',width:100}}>{item.phone}</Text>      
                 </View>
             ))}
 
 
 
-                <View>
+                <View style={{paddingTop:20}}>
 
                 <Button
                 title="Create      Donation"
-                onPress={() => navigation.navigate('About')}
+                onPress={() => navigation.navigate('CreateDonation')}
                     />
 
                 </View>

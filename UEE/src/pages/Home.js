@@ -14,6 +14,14 @@ export default function HomeScreen({ navigation }) {
                 title="Go to list"
                 onPress={() => navigation.navigate('RequestList')}
             />
+       <Button
+                title="Go to selected list"
+                onPress={() => navigation.navigate('Selected person list')}
+            />
+
+
+            
         </View>
+        
     );
 }
