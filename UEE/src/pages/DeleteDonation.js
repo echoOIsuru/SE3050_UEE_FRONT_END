@@ -83,7 +83,7 @@ export default function DeleteDonation({ route }) {
       </View>
 
       <View style={{paddingTop:20}}>
-         <Button 
+         <Button color="#ff5c5c"
          title="Delete"
           onPress={deleteData}>
          </Button>

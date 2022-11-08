@@ -4,31 +4,36 @@ import axios from'react-native-axios';
 import { useEffect, useState } from 'react'
 import { Table, Row, Rows } from 'react-native-table-component';
 import { useNavigation, validatePathConfig } from '@react-navigation/native';
+import { useIsFocused } from "@react-navigation/core";
+
 export default function SelectedPersonList() {
     const [items, setitems] = useState([]);
     const navigation = useNavigation();
+    const isFocused = useIsFocused();
+
 
     [id, setid] = useState('');
     
     useEffect(() => {
+        if (isFocused) {
         axios.get("http://192.168.1.11:8090/api/v1/create_donation" ).then((res) => {
-            
+          
                setitems(res.data)
                console.log("test",res.data)
               
+           
              })
+            }
+           }, [isFocused])
 
-
-           }, [])
-
-    
+          
 
     return (
         <ScrollView>
         <View style={{backgroundColor:'white'}}>
 
             <View>
-            <Text style={{ fontSize:30,fontWeight: '400',textAlign:'center',padding:25}}>Selected Person List</Text>
+            <Text style={{ fontSize:30,fontWeight: '400',textAlign:'center',padding:25,color:'#000000'}}>Selected Person List</Text>
             </View>
 
             <View style={{flexDirection:"row",paddingBottom:15,backgroundColor:'white'}}>

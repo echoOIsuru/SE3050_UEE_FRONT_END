@@ -42,7 +42,7 @@ export default function CreateDonation() {
         <View style={{justifyContent: 'center',backgroundColor:'white'}}>
 
             <View>
-            <Text style={{ fontSize:30,fontWeight: '400',textAlign:'center',padding:25}}>Create Donation</Text>
+            <Text style={{ fontSize:30,fontWeight: '400',textAlign:'center',padding:25,color:'#000000'}}>Create Donation</Text>
             </View>
 
             <View style={{flexDirection:"row",paddingBottom:15,backgroundColor:'white',alignSelf:'center',justifyContent:'center',alignItems:'center'}}>
