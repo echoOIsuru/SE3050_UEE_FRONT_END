@@ -21,7 +21,7 @@ export default function CreateDonation() {
           
         }
         axios({
-            url: "http://192.168.1.11:8090/api/v1/create_donation/",
+            url: "http://192.168.1.14:8090/api/v1/create_donation/",
             method: "post",
             data: data
         }).then((response) => {
@@ -42,14 +42,14 @@ export default function CreateDonation() {
         <View style={{justifyContent: 'center',backgroundColor:'white'}}>
 
             <View>
-            <Text style={{ fontSize:30,fontWeight: '400',textAlign:'center',padding:25,color:'#000000'}}>Create Donation</Text>
+            <Text style={{ fontSize:30,fontWeight: '400',textAlign:'center',padding:45,color:'#000000'}}>Create Donation</Text>
             </View>
 
             <View style={{flexDirection:"row",paddingBottom:15,backgroundColor:'white',alignSelf:'center',justifyContent:'center',alignItems:'center'}}>
-            <Image style={{width: 120, height:120, }}source={require('../assets/y3.png')}  />
+            <Image style={{width: 175, height:175, }}source={require('../assets/y3.png')}  />
             </View>
         
-            <View style={{alignItems: 'center', justifyContent: 'center',justifyContent:'space-between' }}>
+            <View style={{alignItems: 'center', justifyContent: 'center',justifyContent:'space-between',paddingBottom:30,paddingTop:20 }}>
                 <TextInput 
                     style={styles.input}
                     onChangeText={setid}
@@ -67,7 +67,7 @@ export default function CreateDonation() {
                   ></TextInput>
             </View>
             
-            <View style={{flexDirection:"row",paddingTop:20,paddingBottom:10,justifyContent: 'center'}}>
+            <View style={{flexDirection:"row",paddingTop:10,paddingBottom:10,justifyContent: 'center'}}>
             <Text style={{ fontSize:20, fontWeight: '400',width:120}}>Equipments</Text>
             <RadioButton
                value="Equipments"
@@ -94,10 +94,11 @@ export default function CreateDonation() {
        />
       </View>
 
-                <View style={{paddingTop:20}}>
+                <View style={{paddingTop:10,width:200,textAlign:'center',alignSelf:'center',paddingBottom:20}}>
 
-                <Button 
+                <Button
                 title="Submit"
+                
                 onPress={insertData}>
                   </Button>
                 </View>

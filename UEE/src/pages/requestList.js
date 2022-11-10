@@ -11,7 +11,7 @@ export default function RequestList({ navigation }) {
       
 
         useEffect(() => {
-       axios.get("http://192.168.1.11:8090/api/v1/req/" ).then((res) => {
+       axios.get("http://192.168.1.14:8090/api/v1/req/" ).then((res) => {
            
               setitems(res.data)
               console.log("test",res.data)
@@ -41,7 +41,7 @@ export default function RequestList({ navigation }) {
 
             {items.map(item => (
             
-                <View style={{flexDirection:"row",paddingBottom:20,alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'#ECECEC'}} key={item._id}>
+                <View style={{flexDirection:"row",paddingBottom:40,paddingTop:20,alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'#ECECEC'}} key={item._id}>
                  <Text style={{ fontSize:15, fontWeight: '400',width:100,marginLeft:25}}>{item.request_id}</Text>   
                <Text style={{ fontSize:15, fontWeight: '400',width:100,}}>{item.name}</Text> 
                <Text style={{ fontSize:15, fontWeight: '400',width:100}}>{item.age}</Text>
@@ -51,11 +51,12 @@ export default function RequestList({ navigation }) {
 
 
 
-                <View style={{paddingTop:20}}>
+                <View style={{paddingTop:20,width:200,textAlign:'center',alignSelf:'center',paddingBottom:60}}>
 
                 <Button
-                title="Create      Donation"
+                title="Create Donation"
                 onPress={() => navigation.navigate('CreateDonation')}
+                
                     />
 
                 </View>

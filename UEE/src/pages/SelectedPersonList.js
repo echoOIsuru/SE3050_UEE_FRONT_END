@@ -16,7 +16,7 @@ export default function SelectedPersonList() {
     
     useEffect(() => {
         if (isFocused) {
-        axios.get("http://192.168.1.11:8090/api/v1/create_donation" ).then((res) => {
+        axios.get("http://192.168.1.14:8090/api/v1/create_donation" ).then((res) => {
           
                setitems(res.data)
                console.log("test",res.data)
@@ -36,7 +36,7 @@ export default function SelectedPersonList() {
             <Text style={{ fontSize:30,fontWeight: '400',textAlign:'center',padding:25,color:'#000000'}}>Selected Person List</Text>
             </View>
 
-            <View style={{flexDirection:"row",paddingBottom:15,backgroundColor:'white'}}>
+            <View style={{flexDirection:"row",paddingBottom:15,backgroundColor:'white',paddingBottom:20}}>
             <Image style={{width: 110, height:100,marginLeft:55 }}source={require('../assets/y4.png')}  />
             <Image style={{width: 210, height:87,}}source={require('../assets/y2.png')}  />
             </View>
@@ -51,7 +51,7 @@ export default function SelectedPersonList() {
 
             {items.map(item => (
             
-                <View style={{flexDirection:"row",paddingBottom:20,alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'white'}} key={item._id}>
+                <View style={{flexDirection:"row",paddingBottom:20,alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'white',paddingBottom:20,paddingTop:20}} key={item._id}>
                  <Text style={{ fontSize:15, fontWeight: '400',width:100,marginLeft:25}}>{item.name}</Text>   
                <Text style={{ fontSize:15, fontWeight: '400',width:100,}}>{item.donation_type}</Text> 
 
@@ -70,7 +70,7 @@ export default function SelectedPersonList() {
                 </View>
             ))}
 
-<View style={{alignItems: 'center', justifyContent: 'center'}}>
+<View style={{alignItems: 'center', justifyContent: 'center',paddingTop:70}}>
 <Image style={{width: 110, height:100,}}source={require('../assets/y5.png')}  />
 </View>
              

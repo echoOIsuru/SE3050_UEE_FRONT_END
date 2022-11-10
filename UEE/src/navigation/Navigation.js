@@ -14,9 +14,9 @@ const Stack = createNativeStackNavigator();
 export default function Navigation() {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Home" component={HomeScreen} />
+             <Stack.Screen name="Home" component={HomeScreen} />
+             <Stack.Screen name="RequestList" component={RequestList} />
             <Stack.Screen name="About" component={AboutScreen} />
-            <Stack.Screen name="RequestList" component={RequestList} />
             <Stack.Screen name="CreateDonation" component={CreateDonation} />
             <Stack.Screen name="Selected person list" component={SelectedPersonList} />
             <Stack.Screen name="EditDonationType" component={EditDonationType} />

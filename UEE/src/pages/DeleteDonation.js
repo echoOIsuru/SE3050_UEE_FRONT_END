@@ -14,7 +14,7 @@ export default function DeleteDonation({ route }) {
     const {id} = route.params; 
   
     useEffect(() => {
-        axios.get(`http://192.168.1.11:8090/api/v1/create_donation/` + id).then((res) => {
+        axios.get(`http://192.168.1.14:8090/api/v1/create_donation/` + id).then((res) => {
             setid(res.data.request_id)
             setname(res.data.name)
             setChecked(res.data.donation_type);
@@ -24,7 +24,7 @@ export default function DeleteDonation({ route }) {
          
            const deleteData = () => {
             axios({
-                url: "http://192.168.1.11:8090/api/v1/create_donation/" + id,
+                url: "http://192.168.1.14:8090/api/v1/create_donation/" + id,
                 method: "delete"
               
             }).then((res) => {
@@ -48,10 +48,10 @@ export default function DeleteDonation({ route }) {
             <Text style={{ fontSize:30,fontWeight: '400',textAlign:'center',padding:25,color:'#000000'}}>Delete </Text>
             </View>
          <View>
-         <Text style={{ fontSize:30,fontWeight: '400',textAlign:'center',padding:25,color:'#000000'}}>Name:{name}</Text>
+         <Text style={{ fontSize:30,fontWeight: '400',textAlign:'center',padding:45,color:'#000000',}}>Name:{name}</Text>
          </View>
             <View style={{flexDirection:"row",paddingBottom:15,backgroundColor:'white',alignSelf:'center',justifyContent:'center',alignItems:'center'}}>
-            <Image style={{width: 120, height:120, }}source={require('../assets/y6.png')}  />
+            <Image style={{width: 180, height:180, }}source={require('../assets/y6.png')}  />
             </View>
      
             
@@ -64,7 +64,7 @@ export default function DeleteDonation({ route }) {
              />
            </View>
 
-      <View style={{flexDirection:"row",justifyContent: 'center'}}>
+      <View style={{flexDirection:"row",justifyContent: 'center',paddingTop:20}}>
       <Text style={{flexDirection:"row", fontSize:20, fontWeight: '400',width:120}}>Money</Text>
       <RadioButton
         value="Money"
@@ -73,7 +73,7 @@ export default function DeleteDonation({ route }) {
        />
       </View>
           
-      <View style={{flexDirection:"row",justifyContent: 'center',paddingTop:10,}}>
+      <View style={{flexDirection:"row",justifyContent: 'center',paddingTop:30,}}>
       <Text style={{flexDirection:"row", fontSize:20, fontWeight: '400',width:120}}>Scholership</Text>
       <RadioButton
         value="Scholership"
@@ -82,7 +82,7 @@ export default function DeleteDonation({ route }) {
        />
       </View>
 
-      <View style={{paddingTop:20}}>
+      <View style={{paddingTop:20,width:200,textAlign:'center',alignSelf:'center',paddingBottom:40}}>
          <Button color="#ff5c5c"
          title="Delete"
           onPress={deleteData}>
