@@ -10,6 +10,9 @@ const InsertPopupWindow = forwardRef((props, ref) => {
     const [references, setReferences] = useState('');
     const [quizes, setQuizes] = useState('');
 
+    const [meetingError, setMeetingError] = useState('');
+    const [noteError, setNoteError] = useState('');
+
     useImperativeHandle(ref, () => ({
         alertToggle() {
             setModalVisible(true);
@@ -75,8 +78,11 @@ const InsertPopupWindow = forwardRef((props, ref) => {
                             onChangeText={setMeeting}
                             value={meeting}
                             placeholder="Title - 'http://xxxxx'"
-
                         />
+
+                        {meetingError && (
+                            <Text style={{ color: "red", marginTop: 5 }}>{meetingError}</Text>
+                        )}
                         <Text style={styles.modalText}>Note</Text>
                         <TextInput
                             multiline={true}
@@ -87,6 +93,9 @@ const InsertPopupWindow = forwardRef((props, ref) => {
                             placeholder="xxxxxxx"
 
                         />
+                        {noteError && (
+                            <Text style={{ color: "red", marginTop: 5 }}>{noteError}</Text>
+                        )}
                         <Text style={styles.modalText}>References</Text>
                         <TextInput
                             multiline={true}
@@ -117,15 +126,28 @@ const InsertPopupWindow = forwardRef((props, ref) => {
                             </Pressable>
                             <Pressable
                                 style={[styles.button, styles.buttonClose]}
-                                onPress={() => InsertList(!modalVisible)}
+                                onPress={() => {
+                                    if (meeting.trim() === "") {
+                                        setMeetingError("Scheduled meetings is a required field");
+                                    }
+                                    else {
+                                        setMeetingError(null);
+                                    }
+                                    if (note.trim() === "") {
+                                        setNoteError("Note about meeting is a required field");
+                                    }
+                                    else {
+                                        setNoteError(null);
+                                    }
+                                    if (meeting.trim() !== "" && note.trim() !== "") {
+                                        InsertList();
+                                    }
+
+                                }}
                             >
                                 <Text style={styles.textStyle}>Submit</Text>
                             </Pressable>
                         </HStack>
-
-
-
-
                     </View>
                 </View>
             </Modal>
