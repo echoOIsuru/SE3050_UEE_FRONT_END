@@ -2,7 +2,6 @@ import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View, TextInput, ToastAndroid } from "react-native";
 import ServiceManagement from '../../services/skillDonorServices'
 import { HStack } from "@react-native-material/core";
-import { useIsFocused } from "@react-navigation/native";
 
 const UpdatePopupWindow = forwardRef((props, ref) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -11,6 +10,9 @@ const UpdatePopupWindow = forwardRef((props, ref) => {
     const [note, setNote] = React.useState(props.note);
     const [references, setReferences] = React.useState(props.references);
     const [quizes, setQuizes] = React.useState(props.quizes);
+
+    const [meetingError, setMeetingError] = useState('');
+    const [noteError, setNoteError] = useState('');
 
     useImperativeHandle(ref, () => ({
         alertToggle() {
@@ -23,29 +25,29 @@ const UpdatePopupWindow = forwardRef((props, ref) => {
         try {
             var data = {
 
-              published_meeting_link: meeting,
-              note: note,
-              references: references,
-              quizes: quizes
+                published_meeting_link: meeting,
+                note: note,
+                references: references,
+                quizes: quizes
 
             }
             await ServiceManagement.updatecourseDetails(objID, data).then(res => {
-              ToastAndroid.showWithGravityAndOffset(
-                `Selected details successfully updated!`,
-                ToastAndroid.LONG,
-                ToastAndroid.BOTTOM,
-                25,
-                50
-              );
-      
+                ToastAndroid.showWithGravityAndOffset(
+                    `Selected details successfully updated!`,
+                    ToastAndroid.LONG,
+                    ToastAndroid.BOTTOM,
+                    25,
+                    50
+                );
+
             });
             props.fetchData()
             props.isClicked(false)
 
-      
-          } catch (error) {
+
+        } catch (error) {
             ToastAndroid.show(error, ToastAndroid.SHORT);
-          }
+        }
         setModalVisible(!modalVisible)
     }
 
@@ -73,6 +75,9 @@ const UpdatePopupWindow = forwardRef((props, ref) => {
                             placeholder="Title - 'http://xxxxx'"
 
                         />
+                        {meetingError && (
+                            <Text style={{ color: "red", marginTop: 5 }}>{meetingError}</Text>
+                        )}
                         <Text style={styles.modalText}>Note</Text>
                         <TextInput
                             multiline={true}
@@ -83,6 +88,9 @@ const UpdatePopupWindow = forwardRef((props, ref) => {
                             placeholder="xxxxxxx"
 
                         />
+                        {noteError && (
+                            <Text style={{ color: "red", marginTop: 5 }}>{noteError}</Text>
+                        )}
                         <Text style={styles.modalText}>References</Text>
                         <TextInput
                             multiline={true}
@@ -107,13 +115,30 @@ const UpdatePopupWindow = forwardRef((props, ref) => {
                         <HStack m={4} spacing={55} >
                             <Pressable
                                 style={[styles.button, styles.buttonClose]}
-                                onPress={() => {setModalVisible(!modalVisible); props.isClicked(false)}}
+                                onPress={() => { setModalVisible(!modalVisible); props.isClicked(false) }}
                             >
                                 <Text style={styles.textStyle}>Cancel</Text>
                             </Pressable>
                             <Pressable
                                 style={[styles.button, styles.buttonClose]}
-                                onPress={() => updateList(!modalVisible)}
+                                onPress={() => {
+                                    if (meeting.trim() === "") {
+                                        setMeetingError("Scheduled meetings is a required field");
+                                    }
+                                    else {
+                                        setMeetingError(null);
+                                    }
+                                    if (note.trim() === "") {
+                                        setNoteError("Note about meeting is a required field");
+                                    }
+                                    else {
+                                        setNoteError(null);
+                                    }
+                                    if (meeting.trim() !== "" && note.trim() !== "") {
+                                        updateList();
+                                    }
+
+                                }}
                             >
                                 <Text style={styles.textStyle}>Update</Text>
                             </Pressable>
