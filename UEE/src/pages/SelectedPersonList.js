@@ -16,7 +16,7 @@ export default function SelectedPersonList() {
     
     useEffect(() => {
         if (isFocused) {
-        axios.get("http://192.168.1.14:8090/api/v1/create_donation" ).then((res) => {
+        axios.get("http://10.0.2.2:8090/api/v1/create_donation" ).then((res) => {
           
                setitems(res.data)
                console.log("test",res.data)

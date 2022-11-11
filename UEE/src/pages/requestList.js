@@ -11,7 +11,7 @@ export default function RequestList({ navigation }) {
       
 
         useEffect(() => {
-       axios.get("http://192.168.1.14:8090/api/v1/req/" ).then((res) => {
+       axios.get("http://10.0.2.2:8090/api/v1/req/" ).then((res) => {
            
               setitems(res.data)
               console.log("test",res.data)

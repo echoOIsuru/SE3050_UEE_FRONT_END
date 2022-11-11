@@ -21,7 +21,7 @@ export default function CreateDonation() {
           
         }
         axios({
-            url: "http://192.168.1.14:8090/api/v1/create_donation/",
+            url: "http://10.0.2.2:8090/api/v1/create_donation/",
             method: "post",
             data: data
         }).then((response) => {

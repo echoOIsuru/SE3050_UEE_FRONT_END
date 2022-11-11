@@ -5,26 +5,28 @@ import { useEffect, useState } from 'react'
 import { Table, Row, Rows } from 'react-native-table-component';
 import { RadioButton } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-
+import { useIsFocused } from "@react-navigation/core";
 export default function DeleteDonation({ route }) {
     const navigation = useNavigation();
     const [rid, setid] = useState(''); 
     const [name, setname] = useState('');
     const [checked, setChecked] = useState(''); 
     const {id} = route.params; 
-  
+    const isFocused = useIsFocused();
     useEffect(() => {
-        axios.get(`http://192.168.1.14:8090/api/v1/create_donation/` + id).then((res) => {
+        if (isFocused){
+        axios.get(`http://10.0.2.2:8090/api/v1/create_donation/` + id).then((res) => {
             setid(res.data.request_id)
             setname(res.data.name)
             setChecked(res.data.donation_type);
              console.log("test",res.data)
              })
-           }, [])
+            }
+           }, [isFocused])
          
            const deleteData = () => {
             axios({
-                url: "http://192.168.1.14:8090/api/v1/create_donation/" + id,
+                url: "http://10.0.2.2:8090/api/v1/create_donation/" + id,
                 method: "delete"
               
             }).then((res) => {
